@@ -2,13 +2,14 @@
 
 A dummy gunshop storefront built as a Progressive Web App. It runs offline
 with an app shell, a web app manifest, and a service worker, and uses React +
-Vite + Tailwind CSS.
+Vite with a RESTful API (Supabase) for data.
 
 ## Setup
 
 ```bash
+cp .env.example .env   # Windows: copy .env.example .env
 npm install
-npm run dev      # dev server with HMR
+npm run dev            # dev server with HMR
 ```
 
 Other scripts:
@@ -31,16 +32,12 @@ npm run lint     # oxlint
 └── src/
     ├── main.jsx            # entry, mounts <App/>
     ├── App.jsx             # app shell: tab state, header/nav/content/footer
-    ├── App.css             # app shell styles
-    ├── index.css           # global styles
-    ├── components/
-    │   ├── Header.jsx      # brand + nav
-    │   ├── GunCard.jsx     # single product card
-    │   └── Footer.jsx
-    ├── data/
-    │   └── guns.js         # dummy product data
-    └── pages/
-        ├── Catalog.jsx     # product grid
-        ├── About.jsx
-        └── Contact.jsx
+    ├── App.css             # all styles
+    ├── config/api.js       # axios instance + Supabase headers/errors
+    ├── services/           # gun, review, favorite, upload, user API wrappers
+    ├── hooks/              # useGuns, useReviews, useFavorites
+    ├── components/         # Header, Footer, PWA badge, cards, modals, filter
+    ├── pages/              # Catalog, Favorites, Profile, Create, Edit, About, Contact
+    ├── data/guns.js        # local fallback catalog
+    └── utils/              # helpers + localStorage draft storage
 ```
